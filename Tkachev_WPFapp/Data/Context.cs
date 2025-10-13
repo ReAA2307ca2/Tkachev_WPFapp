@@ -45,7 +45,7 @@ public partial class Context : DbContext
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Server=ARTHUR\\SQLEXPRESS;Database=Tkachev_DB;Trusted_Connection=True;TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("Server=DBSRV\\vip2024;Database=ReAA_BD2;Trusted_Connection=True;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

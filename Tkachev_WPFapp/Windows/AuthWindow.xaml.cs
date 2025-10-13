@@ -23,6 +23,7 @@ namespace Tkachev_WPFapp
     public partial class AuthWindow : Window
     {
         public Client Client { get; set; }
+        public Operator Operator { get; set; }
         private Context _context;
 
         public AuthWindow(Context Context)
@@ -50,20 +51,17 @@ namespace Tkachev_WPFapp
                     DialogResult = true;
                     return;
                 }
+                Operator? oper = _context.Operators.Where(c => c.Login == loginTrim && c.Password == passwordTrim).FirstOrDefault();
+                if (oper != null)
+                {
+                    Operator = oper;
+                    DialogResult = true;
+                    return;
+                }
                 else { MessageBox.Show("Invalid login or password"); }
             }
         }
 
-        private Client? CheckUser(string login, string password)
-        {
-            Client? client = _context.Clients.Where(c => c.Login == loginTrim && c.Password == passwordTrim).FirstOrDefault();
-            if (client != null)
-            {
-                Client = client;
-                DialogResult = true;
-                return;
-            }
-            else { MessageBox.Show("Invalid login or password"); }
-        }
+        
     }
 }
