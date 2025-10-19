@@ -21,9 +21,9 @@ public partial class Context : DbContext
 
     public virtual DbSet<Request> Requests { get; set; }
 
-    public virtual DbSet<RequestPart> RequestParts { get; set; }
-
     public virtual DbSet<RequestStatus> RequestStatuses { get; set; }
+
+    public virtual DbSet<RequestsPart> RequestsParts { get; set; }
 
     public virtual DbSet<TechModel> TechModels { get; set; }
 
@@ -31,21 +31,17 @@ public partial class Context : DbContext
 
     public Context()
     {
-        Clients.Load();
-        Comments.Load();
-        Managers.Load();
-        Masters.Load();
-        Operators.Load();
-        Parts.Load();
         Requests.Load();
-        TechModels.Load();
-        TechTypes.Load();
-        RequestStatuses.Load();
+        Comments.Load();
+    }
 
+    public Context(DbContextOptions<Context> options)
+        : base(options)
+    {
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Server=DBSRV\\vip2024;Database=ReAA_BD2;Trusted_Connection=True;TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("Server=ARTHUR\\SQLEXPRESS;Database=Tkachev_DB;Trusted_Connection=True;TrustServerCertificate=true;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -64,11 +60,10 @@ public partial class Context : DbContext
 
         modelBuilder.Entity<Comment>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__comments__3214EC07D8FA9EDD");
+            entity.HasKey(e => e.Id).HasName("PK__comments__3214EC07C40211BF");
 
             entity.ToTable("comments");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.MasterId).HasColumnName("masterId");
             entity.Property(e => e.Message)
                 .HasMaxLength(255)
@@ -77,11 +72,11 @@ public partial class Context : DbContext
 
             entity.HasOne(d => d.Master).WithMany(p => p.Comments)
                 .HasForeignKey(d => d.MasterId)
-                .HasConstraintName("FK__comments__master__5535A963");
+                .HasConstraintName("FK__comments__master__787EE5A0");
 
             entity.HasOne(d => d.Request).WithMany(p => p.Comments)
                 .HasForeignKey(d => d.RequestId)
-                .HasConstraintName("FK__comments__reques__5629CD9C");
+                .HasConstraintName("FK__comments__reques__797309D9");
         });
 
         modelBuilder.Entity<Manager>(entity =>
@@ -135,50 +130,30 @@ public partial class Context : DbContext
 
         modelBuilder.Entity<Request>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__request__3214EC07948E8023");
+            entity.HasKey(e => e.Id).HasName("PK__requests__3214EC076EAFE210");
 
-            entity.ToTable("request");
+            entity.ToTable("requests");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.ClientId).HasColumnName("clientId");
             entity.Property(e => e.CompletionDate).HasColumnName("completionDate");
-            entity.Property(e => e.ProblemDescription)
+            entity.Property(e => e.Description)
                 .HasMaxLength(255)
-                .HasColumnName("problemDescription");
+                .HasColumnName("description");
             entity.Property(e => e.StartDate).HasColumnName("startDate");
             entity.Property(e => e.Status).HasColumnName("status");
             entity.Property(e => e.TechModel).HasColumnName("techModel");
 
             entity.HasOne(d => d.Client).WithMany(p => p.Requests)
                 .HasForeignKey(d => d.ClientId)
-                .HasConstraintName("FK__request__clientI__4E88ABD4");
+                .HasConstraintName("FK__requests__client__71D1E811");
 
             entity.HasOne(d => d.StatusNavigation).WithMany(p => p.Requests)
                 .HasForeignKey(d => d.Status)
-                .HasConstraintName("FK__request__status__4D94879B");
+                .HasConstraintName("FK__requests__status__70DDC3D8");
 
             entity.HasOne(d => d.TechModelNavigation).WithMany(p => p.Requests)
                 .HasForeignKey(d => d.TechModel)
-                .HasConstraintName("FK__request__techMod__4CA06362");
-        });
-
-        modelBuilder.Entity<RequestPart>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__requestP__3214EC0799A9252E");
-
-            entity.ToTable("requestParts");
-
-            entity.Property(e => e.Id).ValueGeneratedNever();
-            entity.Property(e => e.PartId).HasColumnName("partId");
-            entity.Property(e => e.RequestId).HasColumnName("requestId");
-
-            entity.HasOne(d => d.Part).WithMany(p => p.RequestParts)
-                .HasForeignKey(d => d.PartId)
-                .HasConstraintName("FK__requestPa__partI__52593CB8");
-
-            entity.HasOne(d => d.Request).WithMany(p => p.RequestParts)
-                .HasForeignKey(d => d.RequestId)
-                .HasConstraintName("FK__requestPa__reque__5165187F");
+                .HasConstraintName("FK__requests__techMo__6FE99F9F");
         });
 
         modelBuilder.Entity<RequestStatus>(entity =>
@@ -189,6 +164,24 @@ public partial class Context : DbContext
 
             entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.Value).HasMaxLength(255);
+        });
+
+        modelBuilder.Entity<RequestsPart>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__requests__3214EC07E1D0A98B");
+
+            entity.ToTable("requestsParts");
+
+            entity.Property(e => e.PartId).HasColumnName("partId");
+            entity.Property(e => e.RequestId).HasColumnName("requestId");
+
+            entity.HasOne(d => d.Part).WithMany(p => p.RequestsParts)
+                .HasForeignKey(d => d.PartId)
+                .HasConstraintName("FK__requestsP__partI__75A278F5");
+
+            entity.HasOne(d => d.Request).WithMany(p => p.RequestsParts)
+                .HasForeignKey(d => d.RequestId)
+                .HasConstraintName("FK__requestsP__reque__74AE54BC");
         });
 
         modelBuilder.Entity<TechModel>(entity =>

@@ -26,18 +26,19 @@ namespace Tkachev_WPFapp
             authWindow.ShowDialog();
             InitializeComponent();
 
-            if(authWindow.DialogResult == true)
+            if (authWindow.DialogResult == true)
             {
-                if(authWindow.Client != null)
+                if (authWindow.Client != null)
                 {
 
                 }
 
-                if(authWindow.Operator != null)
+                if (authWindow.Operator != null)
                 {
                     cc_main.Content = new OperatorUserControl(_context);
                 }
-            } else
+            }
+            else
             {
                 this.Close();
             }

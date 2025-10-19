@@ -10,4 +10,9 @@ public partial class TechType
     public string? Value { get; set; }
 
     public virtual ICollection<TechModel> TechModels { get; set; } = new List<TechModel>();
+
+    public override string ToString()
+    {
+        return this.Value;
+    }
 }

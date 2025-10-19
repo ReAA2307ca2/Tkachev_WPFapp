@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Tkachev_WPFapp.Models;
 
-public partial class RequestPart
+public partial class RequestsPart
 {
     public int Id { get; set; }
 

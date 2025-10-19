@@ -16,4 +16,9 @@ public partial class Client
     public string? Password { get; set; }
 
     public virtual ICollection<Request> Requests { get; set; } = new List<Request>();
+
+    public override string ToString()
+    {
+        return this.Name;
+    }
 }

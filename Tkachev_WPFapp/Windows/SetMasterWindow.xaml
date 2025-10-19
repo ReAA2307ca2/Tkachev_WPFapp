@@ -1,0 +1,19 @@
+﻿<Window x:Class="Tkachev_WPFapp.Windows.SetMasterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tkachev_WPFapp.Windows"
+        mc:Ignorable="d"
+        Title="SetMasterWindow" Height="200" Width="300">
+    <StackPanel Margin="15">
+        <Label FontSize="24">Set Master</Label>
+        <CheckBox Name="cbox_enableMaster" Click="cbox_enableMaster_Click" FontSize="16">No master</CheckBox>
+        <ComboBox Name="cb_master"></ComboBox>
+
+        <StackPanel Margin="0 10" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button Name="bt_cancel" Click="bt_cancel_Click" Margin="5 0" FontSize="18">Cancel</Button>
+            <Button Name="bt_save" Click="bt_save_Click" Margin="5 0" FontSize="18">Save</Button>
+        </StackPanel>
+    </StackPanel>
+</Window>

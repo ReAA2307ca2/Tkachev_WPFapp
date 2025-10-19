@@ -41,12 +41,12 @@ namespace Tkachev_WPFapp
         {
             string loginTrim = tbox_login.Text.Trim();
             string passwordTrim = tbox_password.Text.Trim();
-            if (!string.IsNullOrEmpty(loginTrim) 
+            if (!string.IsNullOrEmpty(loginTrim)
                 || !string.IsNullOrEmpty(passwordTrim))
             {
                 Client? client = _context.Clients.Where(c => c.Login == loginTrim && c.Password == passwordTrim).FirstOrDefault();
-                if (client != null) 
-                { 
+                if (client != null)
+                {
                     Client = client;
                     DialogResult = true;
                     return;
@@ -62,6 +62,6 @@ namespace Tkachev_WPFapp
             }
         }
 
-        
+
     }
 }

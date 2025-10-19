@@ -14,4 +14,9 @@ public partial class TechModel
     public virtual ICollection<Request> Requests { get; set; } = new List<Request>();
 
     public virtual TechType? TechType { get; set; }
+
+    public override string ToString()
+    {
+        return this.Value;
+    }
 }

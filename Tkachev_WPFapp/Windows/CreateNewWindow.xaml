@@ -6,17 +6,25 @@
         xmlns:local="clr-namespace:Tkachev_WPFapp.Windows"
         mc:Ignorable="d"
         Title="CreateNewWindow" Height="450" Width="300">
-    <StackPanel Margin="15">
-        <Label FontSize="18">Start date</Label>
-        <ComboBox ItemsSource="{Binding}"></ComboBox>
+    <Border Margin="15" BorderBrush="Black" BorderThickness="2px">
+        <StackPanel Margin="5">
+            <Label FontSize="18">Tech type</Label>
+            <ComboBox SelectionChanged="cb_techType_SelectionChanged" Name="cb_techType"></ComboBox>
 
-        <Label FontSize="18">Tech model</Label>
-        <ComboBox ItemsSource="{Binding}"></ComboBox>
+            <Label FontSize="18">Tech model</Label>
+            <ComboBox Name="cb_techModel" 
+                      IsEnabled="False"></ComboBox>
 
-        <Label FontSize="18">Description</Label>
-        <TextBox FontSize="18" Height="60"></TextBox>
+            <Label FontSize="18">Description</Label>
+            <TextBox Name="tbox_Desc" FontSize="18" Height="60"></TextBox>
 
-        <Label FontSize="18">Start date</Label>
-        <ComboBox ItemsSource="{Binding}"></ComboBox>
-    </StackPanel>
+            <Label FontSize="18">Client</Label>
+            <ComboBox Name="cb_client"></ComboBox>
+
+            <StackPanel Margin="0 10" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button Name="bt_cancel" Click="bt_cancel_Click" Margin="5 0" FontSize="18">Cancel</Button>
+                <Button Name="bt_save" Click="bt_save_Click" Margin="5 0" FontSize="18">Save</Button>
+            </StackPanel>
+        </StackPanel>
+    </Border>
 </Window>

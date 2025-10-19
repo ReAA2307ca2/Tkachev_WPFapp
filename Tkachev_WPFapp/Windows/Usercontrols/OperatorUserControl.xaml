@@ -7,22 +7,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
-        <ListView ItemsSource="{Binding RequestsList}">
+        <ListView Name="lv_requests" ItemsSource="{Binding RequestsList}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
-                    <GridViewColumn Header="Start Date" DisplayMemberBinding="{Binding StartDate}"></GridViewColumn>
-                    <GridViewColumn Header="Tech Model" DisplayMemberBinding="{Binding TechModelNavigation.Value}"></GridViewColumn>
+                    <GridViewColumn Header="Tech model" DisplayMemberBinding="{Binding TechModelNavigation.Value}"></GridViewColumn>
                     <GridViewColumn Header="Status" DisplayMemberBinding="{Binding StatusNavigation.Value}"></GridViewColumn>
                     <GridViewColumn Header="Client" DisplayMemberBinding="{Binding Client.Name}"></GridViewColumn>
-                    <GridViewColumn Header="Master" DisplayMemberBinding="{Binding Master.Name}"></GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
 
         <StackPanel Margin="0 15 0 0" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Margin="5 0" Click="bt_createNew_Click" Name="bt_createNew">Create new</Button>
-            <Button Margin="5 0">Set master</Button>
+            <Button Margin="5 0" Click="bt_setMaster_Click" Name="bt_setMaster">Set master</Button>
         </StackPanel>
     </StackPanel>
 </UserControl>

@@ -11,7 +11,7 @@ public partial class Request
 
     public int? TechModel { get; set; }
 
-    public string? ProblemDescription { get; set; }
+    public string? Description { get; set; }
 
     public int? Status { get; set; }
 
@@ -23,7 +23,7 @@ public partial class Request
 
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
 
-    public virtual ICollection<RequestPart> RequestParts { get; set; } = new List<RequestPart>();
+    public virtual ICollection<RequestsPart> RequestsParts { get; set; } = new List<RequestsPart>();
 
     public virtual RequestStatus? StatusNavigation { get; set; }
 
