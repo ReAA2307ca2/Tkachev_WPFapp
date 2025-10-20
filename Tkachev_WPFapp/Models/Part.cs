@@ -9,5 +9,5 @@ public partial class Part
 
     public string? Value { get; set; }
 
-    public virtual ICollection<RequestsPart> RequestsParts { get; set; } = new List<RequestsPart>();
+    public virtual ICollection<RequestPart> RequestParts { get; set; } = new List<RequestPart>();
 }

@@ -14,6 +14,4 @@ public partial class Master
     public string? Login { get; set; }
 
     public string? Password { get; set; }
-
-    public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
 }

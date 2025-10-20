@@ -9,11 +9,11 @@ public partial class Request
 
     public DateOnly? StartDate { get; set; }
 
-    public int? TechModel { get; set; }
+    public int? TechModelId { get; set; }
 
     public string? Description { get; set; }
 
-    public int? Status { get; set; }
+    public int? StatusId { get; set; }
 
     public DateOnly? CompletionDate { get; set; }
 
@@ -21,11 +21,9 @@ public partial class Request
 
     public virtual Client? Client { get; set; }
 
-    public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
+    public virtual ICollection<RequestPart> RequestParts { get; set; } = new List<RequestPart>();
 
-    public virtual ICollection<RequestsPart> RequestsParts { get; set; } = new List<RequestsPart>();
+    public virtual RequestStatus? Status { get; set; }
 
-    public virtual RequestStatus? StatusNavigation { get; set; }
-
-    public virtual TechModel? TechModelNavigation { get; set; }
+    public virtual TechModel? TechModel { get; set; }
 }
