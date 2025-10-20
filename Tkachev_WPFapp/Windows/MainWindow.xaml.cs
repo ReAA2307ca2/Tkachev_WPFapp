@@ -8,7 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-//using Tkachev_WPFapp.Data;
+using Tkachev_WPFapp.Data;
 using Tkachev_WPFapp.Windows.Usercontrols;
 
 namespace Tkachev_WPFapp
@@ -18,12 +18,12 @@ namespace Tkachev_WPFapp
     /// </summary>
     public partial class MainWindow : Window
     {
-        //private Context _context = new Context();
+        private Context _context = new Context();
 
         public MainWindow()
         {
-            //AuthWindow authWindow = new AuthWindow(_context);
-            //authWindow.ShowDialog();
+            AuthWindow authWindow = new AuthWindow(_context);
+            authWindow.ShowDialog();
             InitializeComponent();
 
             //if (authWindow.DialogResult == true)
